@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title> CREER VOTRE CV </title>
+        <link rel="stylesheet" href="https:">
+
+        <style>
+            body{
+                font-family: Arial, sans-serif;
+                background-color: aliceblue;
+            }
+            .container{
+                width: 80%;
+                margin: 40px auto;
+                padding: 20px;
+                background-color: aqua;
+                border: 1px solid;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .form-group{
+                margin-bottom: 20px;
+            }
+        
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Créer votre CV</h1>
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="nom">Nom</label>
+                    <input type="text" class="form_control" id="nom" name="nom" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="prenom">Prénom</label>
+                    <input type="text" class="form_control" id="prenom" name="prenom" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form_control" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telephone">Téléphone</label>
+                    <input type="text" class="form_control" id="telephone" name="telephone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="experience">Expériences</label>
+                    <textarea class="form_control" id="experience" name="experience" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="formation">Formation</label>
+                    <textarea class="form_control" id="formation" name="formation" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </form>
+        </div>
+    </body>
+</html>

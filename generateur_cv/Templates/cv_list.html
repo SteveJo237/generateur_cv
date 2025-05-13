@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>Liste des CV</title>
+    </head>
+    <body>
+        <h1>Liste des CV</h1>
+        <ul>
+            {% for cv in cv_list %}
+            <li><a href='cv_detail/', cv.pk>{{ cv.nom }} {{ cv.prenom }}</a></li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

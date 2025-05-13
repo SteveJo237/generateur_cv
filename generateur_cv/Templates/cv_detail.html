@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title> CV de {{ cv.nom }} {{ cv.prenom }} </title>
+
+        <style>
+            body{
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+            .header{
+                background-color: #f0f0f0;
+                padding: 20px;
+                border-bottom: 1px solid #ccc;
+            }
+            .header h1{
+                margin: 0;
+            }
+            .section{
+                margin-bottom: 20px;
+            }
+            .section h2{
+                margin-top: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>{{ cv.nom }} {{ cv.prenom }}</h1>
+            <p>Eamil: {{ cv.email }} | Téléphone: {{ cv.telephone }}</p>
+        </div>
+
+        <div class="section">
+            <h2>Expérience</h2>
+            <p>{{ cv.experience }}</p>
+        </div>
+
+        <div class="section">
+            <h2>Formation</h2>
+            <p>{{ cv.formation }}</p>
+        </div>
+    </body>
+</html>
