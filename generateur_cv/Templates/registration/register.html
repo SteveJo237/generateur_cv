@@ -1,0 +1,29 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}Inscription - Générateur CV{% endblock %}
+
+{% block content %}
+<h2>Inscription</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}
+                <div class="alert alert-error">
+                    {% for error in field.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">S'inscrire</button>
+</form>
+
+<p style="margin-top: 20px;">
+    Déjà un compte? <a href="{% url 'login' %}">Se connecter</a>
+</p>
+{% endblock %}

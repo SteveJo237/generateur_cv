@@ -1,0 +1,19 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}Désactiver 2FA - Générateur CV{% endblock %}
+
+{% block content %}
+<h2>Désactiver l'authentification à deux facteurs</h2>
+
+<div class="alert alert-error">
+    <strong>Attention!</strong> Désactiver l'authentification à deux facteurs rendra votre compte moins sécurisé.
+</div>
+
+<p>Êtes-vous sûr de vouloir désactiver l'authentification à deux facteurs pour votre compte?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Oui, désactiver 2FA</button>
+    <a href="{% url 'profile' %}" class="btn btn-secondary">Annuler</a>
+</form>
+{% endblock %}

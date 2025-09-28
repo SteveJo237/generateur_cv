@@ -1,0 +1,24 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}Connexion - Générateur CV{% endblock %}
+
+{% block content %}
+<h2>Connexion</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="username">Nom d'utilisateur:</label>
+        <input type="text" name="username" id="username" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Mot de passe:</label>
+        <input type="password" name="password" id="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Se connecter</button>
+</form>
+
+<p style="margin-top: 20px;">
+    Pas encore de compte? <a href="{% url 'register' %}">S'inscrire</a>
+</p>
+{% endblock %}
