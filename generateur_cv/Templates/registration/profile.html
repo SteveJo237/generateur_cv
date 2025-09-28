@@ -1,0 +1,43 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}Profil - Générateur CV{% endblock %}
+
+{% block content %}
+<h2>Profil utilisateur</h2>
+
+<div class="form-group">
+    <label>Nom d'utilisateur:</label>
+    <p>{{ user.username }}</p>
+</div>
+
+<div class="form-group">
+    <label>Email:</label>
+    <p>{{ user.email }}</p>
+</div>
+
+<h3>Sécurité</h3>
+
+<div class="form-group">
+    <label>Authentification à deux facteurs:</label>
+    {% if has_2fa %}
+        <p style="color: green;">✓ Activée</p>
+        <a href="{% url 'disable_2fa' %}" class="btn btn-danger">Désactiver 2FA</a>
+    {% else %}
+        <p style="color: red;">✗ Désactivée</p>
+        <a href="{% url 'setup_2fa' %}" class="btn btn-primary">Activer 2FA</a>
+    {% endif %}
+</div>
+
+{% if devices %}
+    <h4>Appareils configurés</h4>
+    <ul>
+        {% for device in devices %}
+            <li>{{ device.name }} (créé le {{ device.confirmed_at|date:"d/m/Y à H:i" }})</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<div style="margin-top: 30px;">
+    <a href="/" class="btn btn-secondary">Retour à l'accueil</a>
+</div>
+{% endblock %}

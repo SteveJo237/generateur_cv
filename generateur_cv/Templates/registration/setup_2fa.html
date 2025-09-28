@@ -1,0 +1,47 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}Configuration 2FA - Générateur CV{% endblock %}
+
+{% block content %}
+<h2>Configuration de l'authentification à deux facteurs</h2>
+
+{% if device_confirmed %}
+    <div class="alert alert-success">
+        L'authentification à deux facteurs est déjà activée sur votre compte.
+    </div>
+    <a href="{% url 'profile' %}" class="btn btn-primary">Retour au profil</a>
+{% else %}
+    <p>Suivez ces étapes pour activer l'authentification à deux facteurs:</p>
+    
+    <ol>
+        <li>Installez une application d'authentification comme Google Authenticator, Authy, ou Microsoft Authenticator sur votre téléphone.</li>
+        <li>Scannez le code QR ci-dessous avec votre application:</li>
+    </ol>
+    
+    <div class="qr-code">
+        <img src="data:image/png;base64,{{ qr_code_base64 }}" alt="QR Code 2FA">
+    </div>
+    
+    <p>Ou entrez manuellement cette clé secrète dans votre application:</p>
+    <div class="secret-key">{{ secret_key }}</div>
+    
+    <p>Une fois configuré, entrez le code à 6 chiffres généré par votre application pour confirmer:</p>
+    
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ token_form.token.id_for_label }}">{{ token_form.token.label }}</label>
+            {{ token_form.token }}
+            {% if token_form.token.errors %}
+                <div class="alert alert-error">
+                    {% for error in token_form.token.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary">Activer 2FA</button>
+        <a href="{% url 'profile' %}" class="btn btn-secondary">Annuler</a>
+    </form>
+{% endif %}
+{% endblock %}
